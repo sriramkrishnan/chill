@@ -134,10 +134,7 @@ object ChillBuild extends Build {
     Project(id = id, base = file(id), settings = sharedSettings ++ Seq(
       Keys.name := id,
       previousArtifact := youngestForwardCompatible(name),
-      // Disable cross publishing for java artifacts
-      publishArtifact <<= (scalaVersion) { scalaVersion =>
-        if(javaOnly.contains(name) && scalaVersion.startsWith("2.10")) false else true
-      }
+      publishArtifact := true
       )
     )
   }
